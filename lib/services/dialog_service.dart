@@ -17,13 +17,15 @@ class DialogService {
   Future<AlertResponse> showDialog({
     String title,
     String description,
-    String buttonTitle = 'Ok',
+    String buttonTitle,
+    String buttonTitle1,
   }) {
     _dialogCompleter = Completer<AlertResponse>();
     _showDialogListener(AlertRequest(
       title: title,
       description: description,
       buttonTitle: buttonTitle, 
+      buttonTitle1: buttonTitle1,
       ));
     return _dialogCompleter.future;
   }

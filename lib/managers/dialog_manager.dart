@@ -34,7 +34,23 @@ class _DialogManagerState extends State<DialogManager> {
       desc: request.description,
       closeFunction: () =>
           _dialogService.dialogComplete(AlertResponse(confirmed: false)),
-      buttons: [
+      buttons: request.buttonTitle1 != null && request.buttonTitle1.length>0 ? [
+        DialogButton(
+          child: Text(request.buttonTitle),
+          onPressed: () {
+            _dialogService.dialogComplete(AlertResponse(confirmed: true));
+            Navigator.of(context).pop();
+          },
+        ),
+        DialogButton(
+          child: Text(request.buttonTitle1),
+          onPressed: () {
+            _dialogService.dialogComplete(AlertResponse(canceled: true));
+            Navigator.of(context).pop();
+          },
+        )        
+      ] :
+      [
         DialogButton(
           child: Text(request.buttonTitle),
           onPressed: () {
@@ -43,5 +59,5 @@ class _DialogManagerState extends State<DialogManager> {
           },
         )       
       ]).show();
-  }
+  } 
 }

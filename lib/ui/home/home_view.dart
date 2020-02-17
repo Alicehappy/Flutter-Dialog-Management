@@ -10,12 +10,23 @@ class HomeView extends StatelessWidget {
       child: Consumer<HomeViewModel>(
         builder: (context, model, child) => Scaffold(
           body: Center(
-            child: FlatButton(
-              child: Text('Show Dialog'),
-              onPressed: () {
-                model.doThings();
-              },
-            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                FlatButton(
+                  child: Text('Show Confirm Dialog'),
+                  onPressed: () {
+                    model.doConfirmThings();
+                  },
+                ),
+                FlatButton(
+                  child: Text('Show Alert Dialog'),
+                  onPressed: () {
+                    model.doThings();
+                  },
+                ),
+              ],
+            )
           ),
         ),
       ),

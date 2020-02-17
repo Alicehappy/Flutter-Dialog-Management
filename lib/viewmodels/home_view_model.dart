@@ -10,11 +10,29 @@ class HomeViewModel extends ChangeNotifier {
     var dialogResult = await _dialogService.showDialog(
       title: 'Title 1',
       description: 'I love baobeier!',
+      buttonTitle: 'Ok',
     );
     if (dialogResult.confirmed) {
       print('User has confirmed');
     } else {
       print('User cancelled  the dialog');
+    }
+  }
+
+  Future doConfirmThings() async {
+    print('Confirm dialog called');
+    var dialogResult = await _dialogService.showDialog(
+      title: 'Confirm Title 1',
+      description: 'Confirm I love baobeier!',
+      buttonTitle: 'Ok',
+      buttonTitle1: 'Cancel',
+    );
+    if (dialogResult.confirmed != null && dialogResult.confirmed) {
+      print('Confirm User has confirmed');
+    } else if(dialogResult.canceled){
+      print('Confirm User cancelled the dialog - click cancel button');
+    } else {
+      print('Click dropback close the dialog.');
     }
   }
 }
