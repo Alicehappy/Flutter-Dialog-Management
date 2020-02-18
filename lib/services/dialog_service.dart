@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:myapp/datamodels/alert/alert_request.dart';
 import 'package:myapp/datamodels/alert/alert_response.dart';
 
@@ -19,14 +20,17 @@ class DialogService {
     String description,
     String buttonTitle,
     String buttonTitle1,
+    Widget content,
+    
   }) {
     _dialogCompleter = Completer<AlertResponse>();
     _showDialogListener(AlertRequest(
       title: title,
       description: description,
-      buttonTitle: buttonTitle, 
+      buttonTitle: buttonTitle,
       buttonTitle1: buttonTitle1,
-      ));
+      content: content,
+    ));
     return _dialogCompleter.future;
   }
 

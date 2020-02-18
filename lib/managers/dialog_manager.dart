@@ -5,7 +5,6 @@ import 'package:myapp/services/dialog_service.dart';
 import 'package:myapp/locator.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-
 class DialogManager extends StatefulWidget {
   final Widget child;
   DialogManager({Key key, this.child}) : super(key: key);
@@ -29,35 +28,42 @@ class _DialogManagerState extends State<DialogManager> {
 
   void _showDialog(AlertRequest request) {
     Alert(
-      context: context,
-      title: request.title,
-      desc: request.description,
-      closeFunction: () =>
-          _dialogService.dialogComplete(AlertResponse(confirmed: false)),
-      buttons: request.buttonTitle1 != null && request.buttonTitle1.length>0 ? [
-        DialogButton(
-          child: Text(request.buttonTitle),
-          onPressed: () {
-            _dialogService.dialogComplete(AlertResponse(confirmed: true));
-            Navigator.of(context).pop();
-          },
-        ),
-        DialogButton(
-          child: Text(request.buttonTitle1),
-          onPressed: () {
-            _dialogService.dialogComplete(AlertResponse(canceled: true));
-            Navigator.of(context).pop();
-          },
-        )        
-      ] :
-      [
-        DialogButton(
-          child: Text(request.buttonTitle),
-          onPressed: () {
-            _dialogService.dialogComplete(AlertResponse(confirmed: true));
-            Navigator.of(context).pop();
-          },
-        )       
-      ]).show();
-  } 
+            context: context,
+            title: request.title,
+            desc: request.description,
+            content: request.content,
+            closeFunction: () =>
+                _dialogService.dialogComplete(AlertResponse(confirmed: false)),
+            buttons:
+                request.buttonTitle1 != null && request.buttonTitle1.length > 0
+                    ? [
+                        DialogButton(
+                          child: Text(request.buttonTitle),
+                          onPressed: () {
+                            _dialogService
+                                .dialogComplete(AlertResponse(confirmed: true));
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        DialogButton(
+                          child: Text(request.buttonTitle1),
+                          onPressed: () {
+                            _dialogService
+                                .dialogComplete(AlertResponse(canceled: true));
+                            Navigator.of(context).pop();
+                          },
+                        )
+                      ]
+                    : [
+                        DialogButton(
+                          child: Text(request.buttonTitle),
+                          onPressed: () {
+                            _dialogService
+                                .dialogComplete(AlertResponse(confirmed: true));
+                            Navigator.of(context).pop();
+                          },
+                        )
+                      ])
+        .show();
+  }
 }

@@ -1,10 +1,11 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:myapp/services/dialog_service.dart';
 import 'package:myapp/locator.dart';
 
 class HomeViewModel extends ChangeNotifier {
   DialogService _dialogService = locator<DialogService>();
-  
+
   Future doThings() async {
     print('dialog called');
     var dialogResult = await _dialogService.showDialog(
@@ -29,7 +30,7 @@ class HomeViewModel extends ChangeNotifier {
     );
     if (dialogResult.confirmed != null && dialogResult.confirmed) {
       print('Confirm User has confirmed');
-    } else if(dialogResult.canceled){
+    } else if (dialogResult.canceled) {
       print('Confirm User cancelled the dialog - click cancel button');
     } else {
       print('Click dropback close the dialog.');
@@ -40,7 +41,11 @@ class HomeViewModel extends ChangeNotifier {
     print('Custom alert dialog called');
     var dialogResult = await _dialogService.showDialog(
       title: 'Custom Alert',
-      description: 'I love baobeier!',
+      description: 'I love baobeier! Please say something to baobeier',
+      content: TextField(
+          decoration: InputDecoration(
+        labelText: 'Love Note',
+      )),
       buttonTitle: 'Ok',
     );
     if (dialogResult.confirmed) {
@@ -49,7 +54,4 @@ class HomeViewModel extends ChangeNotifier {
       print('User cancelled  the dialog');
     }
   }
-
 }
-
-  
