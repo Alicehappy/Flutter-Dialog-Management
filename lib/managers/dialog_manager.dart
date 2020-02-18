@@ -45,50 +45,50 @@ class _DialogManagerState extends State<DialogManager> {
                         controller: textController,
                       ),
                       TextField(
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            icon: Icon(Icons.lock),
-                            labelText: request.text1,
-                          ),
-                          controller: textController1,
-                        )
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          icon: Icon(Icons.lock),
+                          labelText: request.text1,
+                        ),
+                        controller: textController1,
+                      )
                     ],
                   )
                 : null,
-            closeFunction: () =>
-                _dialogService.dialogComplete(AlertResponse(confirmed: false, canceled: false)),
-            buttons:
-                request.buttonTitle1 != null && request.buttonTitle1.length > 0
-                    ? [
-                        DialogButton(
-                          child: Text(request.buttonTitle),
-                          onPressed: () {
-                            _dialogService
-                                .dialogComplete(AlertResponse(confirmed: true, canceled: false));
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                        DialogButton(
-                          child: Text(request.buttonTitle1),
-                          onPressed: () {
-                            _dialogService
-                                .dialogComplete(AlertResponse(confirmed: false, canceled: true));
-                            Navigator.of(context).pop();
-                          },
-                        )
-                      ]
-                    : [
-                        DialogButton(
-                          child: Text(request.buttonTitle),
-                          onPressed: () {
-                            _dialogService
-                                .dialogComplete(AlertResponse(confirmed: true, 
-                                fieldOne: textController.text.toString(),
-                                fieldTwo: textController1.text.toString() ));
-                            Navigator.of(context).pop();
-                          },
-                        )
-                      ])
+            closeFunction: () => _dialogService.dialogComplete(
+                AlertResponse(confirmed: false, canceled: false)),
+            buttons: request.buttonTitle1 != null &&
+                    request.buttonTitle1.length > 0
+                ? [
+                    DialogButton(
+                      child: Text(request.buttonTitle),
+                      onPressed: () {
+                        _dialogService.dialogComplete(
+                            AlertResponse(confirmed: true, canceled: false));
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    DialogButton(
+                      child: Text(request.buttonTitle1),
+                      onPressed: () {
+                        _dialogService.dialogComplete(
+                            AlertResponse(confirmed: false, canceled: true));
+                        Navigator.of(context).pop();
+                      },
+                    )
+                  ]
+                : [
+                    DialogButton(
+                      child: Text(request.buttonTitle),
+                      onPressed: () {
+                        _dialogService.dialogComplete(AlertResponse(
+                            confirmed: true,
+                            fieldOne: textController.text.toString(),
+                            fieldTwo: textController1.text.toString()));
+                        Navigator.of(context).pop();
+                      },
+                    )
+                  ])
         .show();
   }
 }

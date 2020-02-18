@@ -42,7 +42,7 @@ class HomeViewModel extends ChangeNotifier {
     var dialogResult = await _dialogService.showDialog(
       title: 'Custom Alert',
       description: 'I love baobeier! Please say something to baobeier',
-      text:'User:',
+      text: 'User:',
       text1: 'Passwd:',
       buttonTitle: 'Ok',
     );
@@ -51,7 +51,9 @@ class HomeViewModel extends ChangeNotifier {
       print('User fieldOne input');
       print(dialogResult.fieldOne);
       print(dialogResult.fieldTwo);
-      SnackBar snackBar = SnackBar(content: Text(dialogResult.fieldOne + '    ' + dialogResult.fieldTwo));
+      SnackBar snackBar = SnackBar(
+          content:
+              Text(dialogResult.fieldOne + '    ' + dialogResult.fieldTwo));
       Scaffold.of(context).showSnackBar(snackBar);
     } else {
       print('User cancelled  the dialog');

@@ -28,7 +28,6 @@ class DialogService {
     String buttonTitle1,
     String text,
     String text1,
-    
   }) {
     _dialogCompleter = Completer<AlertResponse>();
     _showDialogListener(AlertRequest(
@@ -48,9 +47,7 @@ class DialogService {
 
   // Completes the _dialogCompleter to resume the Future's execution call
   void dialogComplete(AlertResponse response) {
-
     _dialogCompleter.complete(response);
     _dialogCompleter = null;
-
   }
 }
