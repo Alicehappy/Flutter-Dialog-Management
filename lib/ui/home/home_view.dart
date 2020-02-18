@@ -9,33 +9,35 @@ class HomeView extends StatelessWidget {
       value: HomeViewModel(),
       child: Consumer<HomeViewModel>(
         builder: (context, model, child) => Scaffold(
-          body: Center(
-              child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              FlatButton(
-                child: Text('Show Custom Alert Dialog'),
-                color: Colors.pink[100],
-                onPressed: () {
-                  model.doCustomAlertThings();
-                },
-              ),
-              FlatButton(
-                child: Text('Show Confirm Dialog'),
-                color: Colors.lightGreen[200],
-                onPressed: () {
-                  model.doConfirmThings();
-                },
-              ),
-              FlatButton(
-                child: Text('Show Alert Dialog'),
-                color: Colors.purple,
-                onPressed: () {
-                  model.doThings();
-                },
-              ),
-            ],
-          )),
+          body: Builder(builder: (BuildContext context) {
+            return Center(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                FlatButton(
+                  child: Text('Show Custom Alert Dialog'),
+                  color: Colors.pink[100],
+                  onPressed: () {
+                    model.doCustomAlertThings(context);
+                  },
+                ),
+                FlatButton(
+                  child: Text('Show Confirm Dialog'),
+                  color: Colors.lightGreen[200],
+                  onPressed: () {
+                    model.doConfirmThings();
+                  },
+                ),
+                FlatButton(
+                  child: Text('Show Alert Dialog'),
+                  color: Colors.purple,
+                  onPressed: () {
+                    model.doThings();
+                  },
+                ),
+              ],
+            ));
+          }),
         ),
       ),
     );

@@ -28,7 +28,7 @@ class HomeViewModel extends ChangeNotifier {
       buttonTitle: 'Ok',
       buttonTitle1: 'Cancel',
     );
-    if (dialogResult.confirmed != null && dialogResult.confirmed) {
+    if (dialogResult.confirmed) {
       print('Confirm User has confirmed');
     } else if (dialogResult.canceled) {
       print('Confirm User cancelled the dialog - click cancel button');
@@ -37,7 +37,7 @@ class HomeViewModel extends ChangeNotifier {
     }
   }
 
-  Future doCustomAlertThings() async {
+  Future doCustomAlertThings(context) async {
     print('Custom alert dialog called');
     var dialogResult = await _dialogService.showDialog(
       title: 'Custom Alert',
@@ -51,6 +51,8 @@ class HomeViewModel extends ChangeNotifier {
       print('User fieldOne input');
       print(dialogResult.fieldOne);
       print(dialogResult.fieldTwo);
+      SnackBar snackBar = SnackBar(content: Text(dialogResult.fieldOne + '    ' + dialogResult.fieldTwo));
+      Scaffold.of(context).showSnackBar(snackBar);
     } else {
       print('User cancelled  the dialog');
     }

@@ -56,7 +56,7 @@ class _DialogManagerState extends State<DialogManager> {
                   )
                 : null,
             closeFunction: () =>
-                _dialogService.dialogComplete(AlertResponse(confirmed: false)),
+                _dialogService.dialogComplete(AlertResponse(confirmed: false, canceled: false)),
             buttons:
                 request.buttonTitle1 != null && request.buttonTitle1.length > 0
                     ? [
@@ -64,7 +64,7 @@ class _DialogManagerState extends State<DialogManager> {
                           child: Text(request.buttonTitle),
                           onPressed: () {
                             _dialogService
-                                .dialogComplete(AlertResponse(confirmed: true));
+                                .dialogComplete(AlertResponse(confirmed: true, canceled: false));
                             Navigator.of(context).pop();
                           },
                         ),
@@ -72,7 +72,7 @@ class _DialogManagerState extends State<DialogManager> {
                           child: Text(request.buttonTitle1),
                           onPressed: () {
                             _dialogService
-                                .dialogComplete(AlertResponse(canceled: true));
+                                .dialogComplete(AlertResponse(confirmed: false, canceled: true));
                             Navigator.of(context).pop();
                           },
                         )
@@ -84,7 +84,7 @@ class _DialogManagerState extends State<DialogManager> {
                             _dialogService
                                 .dialogComplete(AlertResponse(confirmed: true, 
                                 fieldOne: textController.text.toString(),
-                                fieldTwo: textController.text.toString() ));
+                                fieldTwo: textController1.text.toString() ));
                             Navigator.of(context).pop();
                           },
                         )
