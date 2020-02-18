@@ -35,4 +35,21 @@ class HomeViewModel extends ChangeNotifier {
       print('Click dropback close the dialog.');
     }
   }
+
+  Future doCustomAlertThings() async {
+    print('Custom alert dialog called');
+    var dialogResult = await _dialogService.showDialog(
+      title: 'Custom Alert',
+      description: 'I love baobeier!',
+      buttonTitle: 'Ok',
+    );
+    if (dialogResult.confirmed) {
+      print('User has confirmed');
+    } else {
+      print('User cancelled  the dialog');
+    }
+  }
+
 }
+
+  

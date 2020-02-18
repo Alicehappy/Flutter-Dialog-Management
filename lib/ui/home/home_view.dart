@@ -14,13 +14,22 @@ class HomeView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 FlatButton(
+                  child: Text('Show Custom Alert Dialog'),
+                  color: Colors.pink[100],
+                  onPressed: () {
+                    model.doCustomAlertThings();
+                  },
+                ),
+                FlatButton(
                   child: Text('Show Confirm Dialog'),
+                  color: Colors.lightGreen[200],
                   onPressed: () {
                     model.doConfirmThings();
                   },
                 ),
                 FlatButton(
                   child: Text('Show Alert Dialog'),
+                  color: Colors.purple[100],
                   onPressed: () {
                     model.doThings();
                   },
