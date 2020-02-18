@@ -42,14 +42,15 @@ class HomeViewModel extends ChangeNotifier {
     var dialogResult = await _dialogService.showDialog(
       title: 'Custom Alert',
       description: 'I love baobeier! Please say something to baobeier',
-      content: TextField(
-          decoration: InputDecoration(
-        labelText: 'Love Note',
-      )),
+      text:'User:',
+      text1: 'Passwd:',
       buttonTitle: 'Ok',
     );
     if (dialogResult.confirmed) {
       print('User has confirmed');
+      print('User fieldOne input');
+      print(dialogResult.fieldOne);
+      print(dialogResult.fieldTwo);
     } else {
       print('User cancelled  the dialog');
     }

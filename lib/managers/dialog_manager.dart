@@ -13,6 +13,9 @@ class DialogManager extends StatefulWidget {
 }
 
 class _DialogManagerState extends State<DialogManager> {
+  TextEditingController textController = TextEditingController();
+  TextEditingController textController1 = TextEditingController();
+
   DialogService _dialogService = locator<DialogService>();
 
   @override
@@ -31,7 +34,27 @@ class _DialogManagerState extends State<DialogManager> {
             context: context,
             title: request.title,
             desc: request.description,
-            content: request.content,
+            content: (request.text != null && request.text.length > 0)
+                ? Column(
+                    children: <Widget>[
+                      TextField(
+                        decoration: InputDecoration(
+                          icon: Icon(Icons.account_circle),
+                          labelText: request.text,
+                        ),
+                        controller: textController,
+                      ),
+                      TextField(
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            icon: Icon(Icons.lock),
+                            labelText: request.text1,
+                          ),
+                          controller: textController1,
+                        )
+                    ],
+                  )
+                : null,
             closeFunction: () =>
                 _dialogService.dialogComplete(AlertResponse(confirmed: false)),
             buttons:
@@ -59,7 +82,9 @@ class _DialogManagerState extends State<DialogManager> {
                           child: Text(request.buttonTitle),
                           onPressed: () {
                             _dialogService
-                                .dialogComplete(AlertResponse(confirmed: true));
+                                .dialogComplete(AlertResponse(confirmed: true, 
+                                fieldOne: textController.text.toString(),
+                                fieldTwo: textController.text.toString() ));
                             Navigator.of(context).pop();
                           },
                         )

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+//import 'package:flutter/material.dart';
 import 'package:myapp/datamodels/alert/alert_request.dart';
 import 'package:myapp/datamodels/alert/alert_response.dart';
 
@@ -20,7 +20,8 @@ class DialogService {
     String description,
     String buttonTitle,
     String buttonTitle1,
-    Widget content,
+    String text,
+    String text1,
     
   }) {
     _dialogCompleter = Completer<AlertResponse>();
@@ -29,7 +30,8 @@ class DialogService {
       description: description,
       buttonTitle: buttonTitle,
       buttonTitle1: buttonTitle1,
-      content: content,
+      text: text,
+      text1: text1,
     ));
     return _dialogCompleter.future;
   }
