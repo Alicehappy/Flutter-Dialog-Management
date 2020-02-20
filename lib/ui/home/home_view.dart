@@ -9,6 +9,9 @@ class HomeView extends StatelessWidget {
       value: HomeViewModel(),
       child: Consumer<HomeViewModel>(
         builder: (context, model, child) => Scaffold(
+          appBar: AppBar(
+            title: const Text('Home View'),
+          ),
           body: Builder(builder: (BuildContext context) {
             return Center(
                 child: Column(
