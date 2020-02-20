@@ -13,6 +13,10 @@ class DialogManager extends StatefulWidget {
 }
 
 class _DialogManagerState extends State<DialogManager> {
+  var alertStyle = AlertStyle(
+      animationType: AnimationType.fromTop,
+      animationDuration: Duration(milliseconds: 800),
+    );
   TextEditingController textController = TextEditingController();
   TextEditingController textController1 = TextEditingController();
 
@@ -32,6 +36,7 @@ class _DialogManagerState extends State<DialogManager> {
   void _showDialog(AlertRequest request) {
     Alert(
             context: context,
+            style: alertStyle,
             title: request.title,
             desc: request.description,
             content: (request.text != null && request.text.length > 0)
